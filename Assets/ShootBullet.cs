@@ -7,28 +7,19 @@ public class ShotBullet : MonoBehaviour
     [SerializeField] private Transform firePoint;
     [SerializeField] private float bulletSpeed = 10f;
 
-    private InputAction shootAction;
 
-
-    private void OnShoot(InputAction.CallbackContext context)
+    private void OnShoot(InputValue value)
     {
-       
-        if (context.performed)
-        {
-            Shoot();
-        }
-    }
 
-    private void Shoot()
-    {
-      
         GameObject bulletInstance = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-
         Rigidbody bulletRigidbody = bulletInstance.GetComponent<Rigidbody>();
 
 
-       
+        if (bulletRigidbody != null)
+        {
             bulletRigidbody.velocity = firePoint.forward * bulletSpeed;
-       
+        }
     }
+
+   
 }

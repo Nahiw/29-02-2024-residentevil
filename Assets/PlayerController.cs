@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -57,23 +58,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         PlayerMovement();
-        if (Input.GetMouseButtonDown(0)) 
-        {
-            Shoot();
-        }
+        
     }
-    private void Shoot()
+    private void OnShoot(InputValue value)
     {
-        GameObject bulletInstance = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Rigidbody bulletRigidbody = bulletInstance.GetComponent<Rigidbody>();
-
-        if (bulletRigidbody != null)
-        {
-            bulletRigidbody.velocity = firePoint.forward * bulletSpeed;
-        }
-        else
-        {
-            Debug.LogWarning("No se encontró Rigidbody en la bala.");
-        }
+        animator.SetTrigger("Shooting");       
+        
     }
 }

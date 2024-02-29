@@ -14,6 +14,8 @@ public class BulletDestro : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             Destroy(other.gameObject);
+
+
             Destroy(gameObject);
 
         }
